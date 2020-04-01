@@ -1,5 +1,5 @@
 import React from "react";
-import { TransactionSignature, Connection, PublicKey } from "@solana/web3.js";
+import { TransactionSignature, Connection, PublicKey, LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { findGetParameter, findPathSegment } from "../utils";
 import { useCluster, ClusterStatus } from "../providers/cluster";
 
@@ -197,7 +197,7 @@ async function createDevTransaction(dispatch: Dispatch, url: string) {
     const connection = new Connection(url, "recent");
     const signature = await connection.requestAirdrop(
       new PublicKey(1),
-      1,
+      LAMPORTS_PER_SOL,
       "recent"
     );
     dispatch({ type: ActionType.InputSignature, signature });
